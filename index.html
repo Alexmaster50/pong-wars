@@ -181,12 +181,14 @@
           if (squares[i][j] !== color) {
             squares[i][j] = color;
 
-                    // Determine bounce direction based on the angle with added randomness
-             let randomness = 0.1; // Adjust the randomness factor as needed
-             let randomAngle = angle + (Math.random() - 0.5) * randomness;
-                
-             updatedDx = -dx * Math.cos(randomAngle);
-             updatedDy = -dy * Math.sin(randomAngle);
+            // Determine bounce direction based on the angle with added randomness
+        let randomness = 0.1; // Adjust the randomness factor as needed
+        let randomAngle = angle + (Math.random() - 0.5) * randomness;
+
+        // Update only once based on the random angle
+        updatedDx = -dx * Math.cos(randomAngle);
+        updatedDy = -dy * Math.sin(randomAngle);
+        break;  // Break the loop after the first collision
 
           }
         }
