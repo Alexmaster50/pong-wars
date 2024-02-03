@@ -243,9 +243,15 @@
 
       //   Right Ball 1 - draw
       drawBall(x20, y20, NIGHT_BALL_COLOR);
-      let bounce2 = updateSquareAndBounce(x20, y20, dx20, dy20, NIGHT_COLOR);
-      dx20 = bounce2.dx;
-      dy20 = bounce2.dy;
+      let bounce20 = updateSquareAndBounce(x20, y20, dx20, dy20, NIGHT_COLOR);
+      dx20 = bounce20.dx;
+      dy20 = bounce20.dy;
+
+      //   Right Ball 1 - draw
+      drawBall(x21, y21, NIGHT_BALL_COLOR);
+      let bounce21 = updateSquareAndBounce(x21, y21, dx21, dy21, NIGHT_COLOR);
+      dx21 = bounce21.dx;
+      dy21 = bounce21.dy;
 
 
       //   Left ball 1 - boundary
@@ -258,10 +264,15 @@
       dx0 = boundary1.dx;
       dy0 = boundary1.dy;
 
-      //   Right Ball 2 - boundary
+      //   Right Ball 1 - boundary
       let boundary20 = checkBoundaryCollision(x20, y20, dx20, dy20);
       dx20 = boundary20.dx;
       dy20 = boundary20.dy;
+
+      //   Right Ball 2 - boundary
+      let boundary21 = checkBoundaryCollision(x21, y21, dx21, dy21);
+      dx21 = boundary21.dx;
+      dy21 = boundary21.dy;
 
       //   Left ball 1
       x0 += dx0;
@@ -275,6 +286,10 @@
       //   Right ball 1
       x20 += dx20;
       y20 += dy20;
+
+      //   Right ball 1
+      x21 += dx21;
+      y21 += dy21;
 
       iteration++;
       if (iteration % 1_000 === 0) console.log("iteration", iteration);
