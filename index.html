@@ -185,7 +185,10 @@
             let randomness = Math.random() - 0.5; // Random value between -0.5 and 0.5
             updatedDx = Math.cos(angle + randomness) * Math.abs(updatedDx);
             updatedDy = Math.sin(angle + randomness) * Math.abs(updatedDy);
-            
+            // Ensure that at least one component of the direction is non-zero
+            if (updatedDx === 0 && updatedDy === 0) {
+                updatedDx = 0.1; // Set a small non-zero value
+            }
           }
         }
       }
