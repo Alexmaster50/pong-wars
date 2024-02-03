@@ -181,11 +181,12 @@
           if (squares[i][j] !== color) {
             squares[i][j] = color;
 
-            // Determine bounce direction based on the angle
+            // Determine bounce direction based on the angle with added randomness
+            let randomness = 0.1; // Adjust the randomness factor as needed
             if (Math.abs(Math.cos(angle)) > Math.abs(Math.sin(angle))) {
-              updatedDx = -updatedDx;
+              updatedDx = -updatedDx * (1 + Math.random() * randomness);
             } else {
-              updatedDy = -updatedDy;
+              updatedDy = -updatedDy * (1 + Math.random() * randomness);
             }
           }
         }
