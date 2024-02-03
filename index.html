@@ -182,12 +182,11 @@
             squares[i][j] = color;
 
             // Determine bounce direction based on the angle with added randomness
-            let randomness = Math.random() - 0.5; // Random value between -0.5 and 0.5
-            updatedDx = Math.cos(angle + randomness) * Math.abs(updatedDx);
-            updatedDy = Math.sin(angle + randomness) * Math.abs(updatedDy);
-            // Ensure that at least one component of the direction is non-zero
-            if (updatedDx === 0 && updatedDy === 0) {
-                updatedDx = 0.1; // Set a small non-zero value
+            let randomness = 0.0; // Adjust the randomness factor as needed
+            if (Math.abs(Math.cos(angle)) > Math.abs(Math.sin(angle))) {
+              updatedDx = -updatedDx * ((Math.random() -0.5) * randomness);
+            } else {
+              updatedDy = -updatedDy * ((Math.random() -0.5) * randomness);
             }
           }
         }
