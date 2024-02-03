@@ -115,17 +115,32 @@
         squares[i][j] = i < numSquaresX / 2 ? DAY_COLOR : NIGHT_COLOR;
       }
     }
+    //Left ball 1
+    let x0 = canvas.width / 4;
+    let y0 = canvas.height / 2;
+    let dx0 = 12.5;
+    let dy0 = -12.5;
 
+    //Left ball 2
     let x1 = canvas.width / 4;
     let y1 = canvas.height / 2;
-    let dx1 = 12.5;
-    let dy1 = -12.5;
+    let dx1 = -12.5;
+    let dy1 = 12.5;
 
-    let x2 = (canvas.width / 4) * 3;
-    let y2 = canvas.height / 2;
-    let dx2 = -12.5;
-    let dy2 = 12.5;
+    //Right ball 1
+    let x20 = (canvas.width / 4) * 3;
+    let y20 = canvas.height / 2;
+    let dx20 = -12.5;
+    let dy20 = 12.5;
 
+    //Right ball 2
+    let x21 = (canvas.width / 4) * 3;
+    let y21 = canvas.height / 2;
+    let dx21 = 12.5;
+    let dy21 = =12.5;
+
+
+    
     let iteration = 0;
 
     function drawBall(x, y, color) {
@@ -212,29 +227,34 @@
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawSquares();
+      
+      //Left ball 1 - draw
+      drawBall(x0, y0, DAY_BALL_COLOR);
+      let bounce1 = updateSquareAndBounce(x0, y0, dx0, dy0, DAY_COLOR);
+      dx0 = bounce1.dx;
+      dy0 = bounce1.dy;
 
-      drawBall(x1, y1, DAY_BALL_COLOR);
-      let bounce1 = updateSquareAndBounce(x1, y1, dx1, dy1, DAY_COLOR);
-      dx1 = bounce1.dx;
-      dy1 = bounce1.dy;
+      //Right Ball 1 - draw
+      drawBall(x20, y20, NIGHT_BALL_COLOR);
+      let bounce2 = updateSquareAndBounce(x20, y20, dx20, dy20, NIGHT_COLOR);
+      dx20 = bounce2.dx;
+      dy20 = bounce2.dy;
 
-      drawBall(x2, y2, NIGHT_BALL_COLOR);
-      let bounce2 = updateSquareAndBounce(x2, y2, dx2, dy2, NIGHT_COLOR);
-      dx2 = bounce2.dx;
-      dy2 = bounce2.dy;
+      //Left ball 1 - boundary
+      let boundary1 = checkBoundaryCollision(x0, y0, dx0, dy0);
+      dx0 = boundary1.dx;
+      dy0 = boundary1.dy;
 
-      let boundary1 = checkBoundaryCollision(x1, y1, dx1, dy1);
-      dx1 = boundary1.dx;
-      dy1 = boundary1.dy;
+      //Right Ball 2 - boundary
+      let boundary20 = checkBoundaryCollision(x20, y20, dx20, dy20);
+      dx20 = boundary20.dx;
+      dy20 = boundary20.dy;
 
-      let boundary2 = checkBoundaryCollision(x2, y2, dx2, dy2);
-      dx2 = boundary2.dx;
-      dy2 = boundary2.dy;
-
-      x1 += dx1;
-      y1 += dy1;
-      x2 += dx2;
-      y2 += dy2;
+      x0 += dx0;
+      y0 += dy0;
+      
+      x20 += dx20;
+      y20 += dy20;
 
       iteration++;
       if (iteration % 1_000 === 0) console.log("iteration", iteration);
